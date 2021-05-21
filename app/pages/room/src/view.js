@@ -5,6 +5,9 @@ const userAvatar = document.getElementById("imgUser");
 const roomTopic = document.getElementById("pTopic");
 const gridAttendees = document.getElementById("gridAttendees");
 const gridSpeakers = document.getElementById("gridSpeakers");
+const btnMicrophone = document.getElementById("btnMicrophone");
+const btnClipboard = document.getElementById("btnClipBoard");
+const btnClap = document.getElementById("btnClap");
 
 export default class View {
   static updateUserImage({ avatar, username }) {
@@ -48,5 +51,39 @@ export default class View {
     }
 
     baseElement.innerHTML += htmlTemplate;
+  }
+
+  static _createAudioElement({ muted = true, srcObject }) {
+    const audio = document.createElement("audio");
+    audio.muted = muted;
+    audio.srcObject = srcObject;
+
+    audio.addEventListener("loadedmetadata", async () => {
+      try {
+        await audio.play();
+      } catch (error) {
+        console.log("error to play", error);
+      }
+    });
+  }
+
+  static renderAudioElement({ callerId, stream, isCurrentId }) {
+    View._createAudioElement({
+      muted: isCurrentId,
+      srcObject: stream,
+    });
+  }
+
+  static showUserFeatures(isSpeaker) {
+    if (!isSpeaker) {
+      btnClap.classList.remove("hidden");
+      btnMicrophone.classList.add("hidden");
+      btnClipboard.classList.add("hidden");
+      return;
+    }
+
+    btnClap.classList.add("hidden");
+    btnMicrophone.classList.remove("hidden");
+    btnClipboard.classList.remove("hidden");
   }
 }

@@ -1,6 +1,7 @@
 # ClubHouse Clone Template - Semana JS Expert 4.0
 
-Seja bem vindo(a) à quarta Semana Javascript Expert.Este é o código inicial para iniciar nossa jornada.
+Seja bem vindo(a) à quarta Semana Javascript Expert!
+Este é o código inicial para iniciar nossa jornada.
 
 Marque esse projeto com uma estrela 🌟
 
@@ -22,13 +23,14 @@ Marque esse projeto com uma estrela 🌟
 
 - [ ] O app deve funcionar na Web, Android e IOS
 - Login
+
   - [ ] Deve ter login com GitHub
     - [ ] Se houver dados do usuario em localStorage deve ir para lobby direto
 
 - Lobby
   - [ ] Se não houver dados do usuario em localStorage deve voltar para login
   - [x] Mostra todas as salas ativas
-  - [ ] Atualiza salas em realtime
+  - [x] Atualiza salas em realtime
   - [x] Pode criar uma sala sem topico
   - [x] Pode criar uma sala com topico
   - [x] Pode acessar salas ativas
@@ -36,7 +38,7 @@ Marque esse projeto com uma estrela 🌟
   - [ ] Se não houver dados do usuario em localStorage deve voltar para login
   - [x] Cria uma sala com um usuário dono
   - [x] Todos usuários futuros entram com perfil de attendees
-  - [ ] Notifica Lobby sobre atualizações na sala
+  - [x] Notifica Lobby sobre atualizações na sala
   - [x] Lista usuarios com perfis de speakers e attendees
   - [x] Se o dono da sala desconectar, será removida
   - Users
@@ -53,5 +55,5 @@ Marque esse projeto com uma estrela 🌟
       - [ ] Pode ouvir speakers ativos
       - [ ] Pode pedir upgrade de perfil ao dono da sala
         - Ao ser aprovado
-          - [ ] Reinicia todas as suas chamas ativas com os usuarios da sala
+          - [ ] Reinicia todas as suas chamadas ativas com os usuarios da sala
           - [ ] Recebe as permissões do perfil speaker
