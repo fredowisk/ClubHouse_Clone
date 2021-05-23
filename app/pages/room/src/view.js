@@ -110,6 +110,10 @@ export default class View {
     btnClap.addEventListener("click", View._onClapClick(command));
   }
 
+  static redirectToLogin() {
+    window.location = constants.pages.login;
+  }
+
   static _redirectToLobby() {
     window.location = constants.pages.lobby;
   }

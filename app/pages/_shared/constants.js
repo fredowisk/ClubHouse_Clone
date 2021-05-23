@@ -1,6 +1,6 @@
 export const constants = {
   socketURL: "http://localhost:3000",
-  sockerNamespaces: {
+  socketNamespaces: {
     room: "room",
     lobby: "lobby",
   },
@@ -13,8 +13,8 @@ export const constants = {
     // }
   }),
   pages: {
-    lobby: '/pages/lobby',
-    login: '/pages/login',
+    lobby: "/pages/lobby",
+    login: "/pages/login",
   },
 
   events: {
@@ -29,4 +29,14 @@ export const constants = {
     SPEAK_REQUEST: "speakRequest",
     SPEAK_ANSWER: "speakAnswer",
   },
+  firebaseConfig: {
+    apiKey: "AIzaSyCGGMzY4UUIIEcvxJlRS62nzb7bY_CazLU",
+    authDomain: "semana-js-expert-eab4a.firebaseapp.com",
+    projectId: "semana-js-expert-eab4a",
+    storageBucket: "semana-js-expert-eab4a.appspot.com",
+    messagingSenderId: "208709820692",
+    appId: "1:208709820692:web:34247640e578b0fa6be201",
+    measurementId: "G-F8S1HPR3VF",
+  },
+  storageKey: "jsexpert:storage:user",
 };
