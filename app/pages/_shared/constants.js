@@ -12,6 +12,11 @@ export const constants = {
     //   path: '/'
     // }
   }),
+  pages: {
+    lobby: '/pages/lobby',
+    login: '/pages/login',
+  },
+
   events: {
     USER_CONNECTED: "userConnection",
     USER_DISCONNECTED: "userDisconnection",
@@ -20,5 +25,8 @@ export const constants = {
 
     LOBBY_UPDATED: "lobbyUpated",
     UPGRADE_USER_PERMISSION: "upgradeUserPermission",
+
+    SPEAK_REQUEST: "speakRequest",
+    SPEAK_ANSWER: "speakAnswer",
   },
 };

@@ -1,4 +1,5 @@
 import { constants } from "../../_shared/constants.js";
+import Attendee from "./entities/attendee.js";
 
 export default class RoomController {
   constructor({ roomInfo, socketBuilder, view, peerBuilder, roomService }) {
@@ -24,8 +25,23 @@ export default class RoomController {
   }
 
   _setupViewEvents() {
+    this.view.configureLeaveButton();
     this.view.updateUserImage(this.roomInfo.user);
     this.view.updateRoomTopic(this.roomInfo.room);
+    this.view.configureClapButton(this.onClapPressed());
+    this.view.configureMicrophoneButton(this.onMicrophonePressed());
+  }
+
+  onMicrophonePressed() {
+    return async () => {
+      await this.roomService.toggleAudioActivation();
+    };
+  }
+
+  onClapPressed() {
+    return () => {
+      this.socket.emit(constants.events.SPEAK_REQUEST, this.roomInfo.user);
+    };
   }
 
   _setupSocket() {
@@ -34,7 +50,21 @@ export default class RoomController {
       .setOnUserDisconnected(this.onDisconnected())
       .setOnRoomUpdated(this.onRoomUpdated())
       .setOnUserProfileUpgrade(this.onUserProfileUpgrade())
+      .setOnSpeakRequested(this.onSpeakRequested())
       .build();
+  }
+
+  onSpeakRequested() {
+    return (data) => {
+      const attendee = new Attendee(data);
+      const result = prompt(
+        `${attendee.username} pediu para falar! Deseja aceitar?`
+      );
+      this.socket.emit(constants.events.SPEAK_ANSWER, {
+        answer: !!Number(result),
+        user: attendee,
+      });
+    };
   }
 
   async _setupWebRTC() {
@@ -103,9 +133,8 @@ export default class RoomController {
     return (user) => {
       console.log("onUserProfileUpgrade", user);
 
-      this.roomService.upgradeUserPermission(user);
-
       if (user.isSpeaker) {
+        this.roomService.upgradeUserPermission(user);
         this.view.addAttendeeOnGrid(user, true);
       }
 
